@@ -1,13 +1,10 @@
 package net.alexoro.androidutils.environment;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.WindowManager;
 import net.alexoro.androidutils.security.MD5;
 
@@ -21,8 +18,6 @@ import java.util.Locale;
  * Time: 12:07
  */
 public class DeviceDetector {
-
-    private static final String LOG_TAG = DeviceDetector.class.getSimpleName();
 
     private Context mContext;
 
@@ -67,19 +62,6 @@ public class DeviceDetector {
         oi.apiText = Build.VERSION.RELEASE;
         oi.isRooted = isDeviceRooted();
         return oi;
-    }
-
-    public ApplicationInfo applicationInfo() {
-        try {
-            PackageInfo pi = mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0 );
-            ApplicationInfo ai = new ApplicationInfo();
-            ai.build = pi.versionCode;
-            ai.version = pi.versionName;
-            return ai;
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.w(LOG_TAG, e.getMessage(), e);
-            return null;
-        }
     }
 
     public ConnectionInfo connectionInfo() {
@@ -170,11 +152,6 @@ public class DeviceDetector {
         public int api;
         public String apiText;
         public boolean isRooted;
-    }
-
-    public static class ApplicationInfo {
-        public int build;
-        public String version;
     }
 
     public static class ConnectionInfo {

@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
+import net.alexoro.androidutils.app.ApplicationInfo;
 
 /**
  * User: UAS
@@ -45,6 +46,9 @@ public class SystemPreferences {
         if (value < 0 || value > 255) {
             throw new IllegalArgumentException("Available value of brightness is [0, 255]");
         }
+        if (!new ApplicationInfo(mContext).isActivityDeclared(RefreshScreenActivity.class)) {
+            throw new IllegalStateException(RefreshScreenActivity.class.getCanonicalName() + "must be declared in AndroidManifest.xml");
+        }
 
         android.provider.Settings.System.putInt(
                 mContext.getContentResolver(),
@@ -52,6 +56,7 @@ public class SystemPreferences {
                 value
         );
 
+        // it is required to apply the new color (refresh the screen)
         mContext.startActivity(new Intent(mContext, RefreshScreenActivity.class));
     }
 
