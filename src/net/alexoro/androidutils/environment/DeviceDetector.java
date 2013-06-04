@@ -6,6 +6,7 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
+import net.alexoro.androidutils.R;
 import net.alexoro.androidutils.security.MD5;
 
 import java.io.File;
@@ -41,6 +42,8 @@ public class DeviceDetector {
         di.screenWidth  = (int) Math.ceil(dm.widthPixels * (dm.densityDpi / 160.0));
         di.screenHeight = (int) Math.ceil(dm.heightPixels * (dm.densityDpi / 160.0));
         di.screenDensity = dm.densityDpi;
+        di.isSmartphone = mContext.getResources().getBoolean(R.bool.is_mobile);
+        di.isTablet = !di.isSmartphone;
         return di;
     }
 
@@ -141,6 +144,8 @@ public class DeviceDetector {
         public int screenWidth;
         public int screenHeight;
         public int screenDensity;
+        public boolean isSmartphone;
+        public boolean isTablet;
     }
 
     public static class GeoInfo {
