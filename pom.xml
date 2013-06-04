@@ -6,7 +6,7 @@
 	<!-- Module description -->
 	<groupId>net.alexoro</groupId>
     <artifactId>android-utils</artifactId>
-    <packaging>jar</packaging>
+    <packaging>apklib</packaging>
 	<version>1.0</version>
     <name>Android Utils</name>
 	
