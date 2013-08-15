@@ -1,4 +1,4 @@
-package net.alexoro.androidutils.ui;
+package net.alexoro.androidutils.app;
 
 import android.os.AsyncTask;
 
