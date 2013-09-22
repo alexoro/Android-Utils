@@ -29,7 +29,7 @@ abstract public class AsyncTaskWithException<Params, Progress, Result>
         }
     }
 
-    abstract protected Result doInBackgroundImpl(Params... params);
+    abstract protected Result doInBackgroundImpl(Params... params) throws Exception;
 
     protected void onSuccessExecute(Result result) {
 
