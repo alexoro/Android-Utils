@@ -44,6 +44,20 @@ public class CountryCodeMapper {
         return null;
     }
 
+    public String getIso2(String code3) {
+        if (code3 == null || code3.length() == 2) {
+            return code3;
+        }
+
+        for (Item item : sItems) {
+            if (item.code3.equalsIgnoreCase(code3)) {
+                return item.code2.toLowerCase();
+            }
+        }
+
+        return null;
+    }
+
     protected void fillList() {
         sItems.add(new Item("AD", "AND"));
         sItems.add(new Item("AE", "ARE"));
